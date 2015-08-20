@@ -74,26 +74,24 @@
             // case where the input is a string possibly containing multiple word tokens.
             else if($search_string_length > 1){
                 $temp_token_array = [];
-
                 // loop through the input sentence
                 for ($i = 0; $i < count($string_to_reverse); $i++) {
-                    //echo $string_to_reverse[$i]."\n";
+                    // insert non-whitespace tokens into a temporary array
                     if($string_to_reverse[$i] != ' '){
                         $temp_token_array[$i] = $string_to_reverse[$i];
                     }
-
-                    // put the whitespace in as is
+                    // put the whitespace into the output string as is
                     else {
                         $reversed_string[$i] = $string_to_reverse[$i];
                         continue;
                     }
+                    
                     // case when you reach a whitespace -> pop the previous string token into the output but in reverse
                     if($string_to_reverse[$i] == ' ' || $i == count($string_to_reverse) - 1){
                         // loop through the temporary token holder
                         for($j = 0; $j < count($temp_token_array); $j++){
                             $reversed_string[$j] = $temp_token_array[count($temp_token_array) - $j - 1];
                         }
-
                         // clear out the temporary token holder
                         $temp_token_array = [];
                     }
